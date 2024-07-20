@@ -1,0 +1,851 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  overflow-y: auto;
+}
+#root::-webkit-scrollbar {
+  width: 5px;
+}
+#root::-webkit-scrollbar-track {
+  background: rgb(30, 30, 30); /* color of the tracking area */
+}
+#root::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 210, 118); /* color of the scroll thumb */
+  border-radius: 10px; /* roundness of the scroll thumb */
+}
+
+.aboutText {
+  width: 60%;
+}
+.aboutText p > b {
+  color: rgb(20, 210, 118);
+}
+.aboutText h2 {
+  margin: 1rem 0;
+  color: rgb(20, 210, 118);
+}
+
+body {
+  background-color: rgb(30, 30, 30);
+  color: rgb(244, 244, 244);
+  font-family: "Inconsolata", monospace;
+}
+body #openCloseMenu {
+  display: none;
+}
+body #openCloseLabel {
+  display: none;
+}
+body .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 251px);
+}
+body .container h1 {
+  margin: 15px auto;
+}
+body .container#home {
+  flex-direction: column;
+}
+body .container#error h2 {
+  text-align: center;
+}
+body #latest-articles {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 40px;
+  flex-wrap: wrap;
+}
+body #latest-articles h2 {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 20px auto;
+}
+body #latest-articles .article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 5px;
+  flex-basis: 30%;
+  border: 1px solid rgb(244, 244, 244);
+}
+body #latest-articles .article a:visited {
+  color: rgb(244, 244, 244);
+}
+body #subscribe > div {
+  margin-left: 20px;
+}
+body #subscribe > div > p {
+  margin-bottom: 20px;
+}
+body #subscribe form {
+  flex-grow: 1;
+}
+body #subscribe form > div {
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+body #subscribe form > div.flags {
+  margin: 25px auto;
+  flex-direction: row;
+}
+body #subscribe form > div.flags label {
+  margin-left: 15px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+body #subscribe form > div textarea {
+  resize: vertical;
+  height: 136px;
+}
+body #subscribe form > div select {
+  margin-top: 0 !important;
+}
+body #subscribe form > div select option {
+  color: rgb(30, 30, 30);
+}
+body #subscribe form > div input, body #subscribe form > div textarea, body #subscribe form > div select {
+  flex-grow: 1;
+  margin-top: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: rgb(244, 244, 244);
+  font-family: "Inconsolata", monospace;
+  border-bottom: 1px solid rgb(244, 244, 244);
+}
+body #subscribe form > div input.error, body #subscribe form > div textarea.error, body #subscribe form > div select.error {
+  border-bottom: 1px solid red;
+}
+body #subscribe form > div input:focus-visible, body #subscribe form > div textarea:focus-visible, body #subscribe form > div select:focus-visible {
+  outline: 0;
+  border-bottom: 1px solid rgb(20, 210, 118);
+}
+body #subscribe form > div input::-webkit-scrollbar, body #subscribe form > div textarea::-webkit-scrollbar, body #subscribe form > div select::-webkit-scrollbar {
+  background-color: rgb(244, 244, 244);
+}
+body #subscribe form > div input::-webkit-scrollbar-button, body #subscribe form > div textarea::-webkit-scrollbar-button, body #subscribe form > div select::-webkit-scrollbar-button {
+  background-color: rgb(244, 244, 244);
+}
+body #subscribe form > div input::-webkit-scrollbar-track, body #subscribe form > div textarea::-webkit-scrollbar-track, body #subscribe form > div select::-webkit-scrollbar-track {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgb(20, 210, 118);
+}
+body #subscribe form > div input::-webkit-scrollbar-track-piece, body #subscribe form > div textarea::-webkit-scrollbar-track-piece, body #subscribe form > div select::-webkit-scrollbar-track-piece {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgb(20, 210, 118);
+}
+body #subscribe form > div input::-webkit-scrollbar-thumb, body #subscribe form > div textarea::-webkit-scrollbar-thumb, body #subscribe form > div select::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 210, 118);
+}
+body #subscribe form > div input::-webkit-scrollbar-corner, body #subscribe form > div textarea::-webkit-scrollbar-corner, body #subscribe form > div select::-webkit-scrollbar-corner {
+  background-color: rgb(30, 30, 30);
+}
+body #subscribe form > div input::-webkit-resizer, body #subscribe form > div textarea::-webkit-resizer, body #subscribe form > div select::-webkit-resizer {
+  background-color: rgb(30, 30, 30);
+}
+body #subscribe form > div input[type=radio], body #subscribe form > div textarea[type=radio], body #subscribe form > div select[type=radio] {
+  display: none;
+}
+body #subscribe form > div input[type=radio]:checked + label > img, body #subscribe form > div textarea[type=radio]:checked + label > img, body #subscribe form > div select[type=radio]:checked + label > img {
+  outline: 2px solid rgb(20, 210, 118);
+}
+body #subscribe form > div button {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Inconsolata", monospace;
+  border: 1px solid white;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+body #subscribe form .success-message {
+  border: 1px solid rgb(20, 210, 118);
+  color: rgb(20, 210, 118);
+  text-align: center;
+  padding: 10px;
+}
+body #contacts {
+  flex-direction: column;
+  padding-top: 30px;
+}
+body #contacts #contact_line {
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+}
+body #contacts #contact_line > div:first-child {
+  flex-grow: 1;
+  flex-basis: 50%;
+  margin-right: 10px;
+}
+body #contacts #contact_line > div:last-child {
+  flex-grow: 1;
+  flex-basis: 50%;
+  margin-left: 10px;
+}
+body #contacts #contact_line > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+}
+body #contacts #contact_line > div:last-child > div a {
+  padding: 5px 10px;
+  margin: 20px 0;
+  color: rgb(244, 244, 244);
+  text-decoration: none;
+  align-self: center;
+}
+body #contacts #contact_line > div:last-child > div a div {
+  display: block;
+}
+body #contacts #contact_line > div:last-child > div a div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+body #contacts #contact_line > div:last-child > div a div:nth-child(2) p {
+  padding: 0;
+}
+body #contacts #contact_line > div:last-child > div a div:nth-child(2) p:not(.side) {
+  flex-basis: 99%;
+  flex-grow: 2;
+  text-align: center;
+}
+body #contacts #contact_line > div:last-child > div a div:nth-child(2) p.side {
+  flex-shrink: 2;
+}
+body #contacts #contact_line > div:last-child > div a div:nth-child(2) p.side:last-child {
+  text-align: right;
+}
+body #contacts #contact_line > div:last-child > div a span {
+  display: none;
+}
+body #contacts #contact_line > div:last-child > div a:hover span {
+  display: inline-block;
+}
+body #contacts #contact_line form {
+  flex-grow: 1;
+}
+body #contacts #contact_line form > div {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+body #contacts #contact_line form > div div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+body #contacts #contact_line form > div div textarea {
+  resize: vertical;
+  height: 136px;
+}
+body #contacts #contact_line form > div div input, body #contacts #contact_line form > div div textarea {
+  flex-grow: 1;
+  margin-top: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: rgb(244, 244, 244);
+  font-family: "Inconsolata", monospace;
+  border-bottom: 1px solid rgb(244, 244, 244);
+}
+body #contacts #contact_line form > div div input.error, body #contacts #contact_line form > div div textarea.error {
+  border-bottom: 1px solid red;
+}
+body #contacts #contact_line form > div div input:focus-visible, body #contacts #contact_line form > div div textarea:focus-visible {
+  outline: 0;
+  border-bottom: 1px solid rgb(20, 210, 118);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar, body #contacts #contact_line form > div div textarea::-webkit-scrollbar {
+  background-color: rgb(244, 244, 244);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar-button, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-button {
+  background-color: rgb(244, 244, 244);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar-track, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-track {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgb(20, 210, 118);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar-track-piece, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-track-piece {
+  background-color: rgb(30, 30, 30);
+  border: 1px solid rgb(20, 210, 118);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar-thumb, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 210, 118);
+}
+body #contacts #contact_line form > div div input::-webkit-scrollbar-corner, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-corner {
+  background-color: rgb(30, 30, 30);
+}
+body #contacts #contact_line form > div div input::-webkit-resizer, body #contacts #contact_line form > div div textarea::-webkit-resizer {
+  background-color: rgb(30, 30, 30);
+}
+body #contacts #contact_line form > div div button {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Inconsolata", monospace;
+  border: 1px solid white;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+body .message {
+  border: 1px solid;
+  text-align: center;
+  padding: 10px;
+}
+body .message.success {
+  border-color: rgb(20, 210, 118);
+  color: rgb(20, 210, 118);
+}
+body .message.error {
+  border-color: red;
+  color: red;
+}
+body #terminalEditor {
+  max-height: 200px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+body #terminalEditor::-webkit-scrollbar {
+  display: none;
+}
+body .pointer {
+  display: inline-block;
+  background-color: rgb(244, 244, 244);
+  width: 7px;
+  height: 15px;
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+body .about-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+}
+body .about-page > div > h2 {
+  margin-bottom: 1rem;
+}
+body #skills {
+  flex-basis: 35%;
+}
+body #skills h2 {
+  text-align: right;
+}
+body #skills .skill-box {
+  display: flex;
+  align-items: center;
+}
+body #skills .skill-box:hover .skill-left-fill::after {
+  left: 0;
+  background-color: rgb(30, 30, 30);
+  animation: left-to-right 1s;
+}
+body #skills .skill-box:hover .skill-right-fill::after {
+  right: 0;
+  background-color: rgb(30, 30, 30);
+  animation: right-to-left 1s;
+}
+body #skills .skill-box div.skill-left-fill, body #skills .skill-box div.skill-right-fill {
+  background-color: rgb(244, 244, 244);
+  flex-basis: 40%;
+  height: 1rem;
+  position: relative;
+}
+body #skills .skill-box div.skill-left-fill::after, body #skills .skill-box div.skill-right-fill::after {
+  content: "";
+  height: 1rem;
+  position: absolute;
+  width: 5px;
+  background-color: transparent;
+}
+body #skills .skill-box div:first-child, body #skills .skill-box div:last-child {
+  font-size: 2rem;
+  padding-bottom: 8px;
+}
+body #skills .skill-box div.skill-text {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgb(20, 210, 118);
+}
+body #welcome-container,
+body #projects-container {
+  justify-content: center;
+}
+body #welcome-container > div,
+body #projects-container > div {
+  text-align: center;
+}
+body #welcome-container {
+  height: 100vh;
+}
+body #projects-container > div {
+  display: flex;
+  flex-direction: column;
+  /*span{
+    font-size: 2rem;
+    &.pointer{
+      height:2rem;
+      background-color:$terminal-green
+    }
+  }*/
+}
+body #projects-container > div > p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+body .intro-titles h3 {
+  color: rgb(153, 153, 153);
+}
+body #command-line {
+  width: 100%;
+  height: 100px;
+  border-top: rgb(244, 244, 244) 1px solid;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+body #command-line textarea {
+  border: none;
+  background-color: rgb(30, 30, 30);
+  color: rgb(244, 244, 244);
+  outline: none;
+  font-family: "Inconsolata", monospace;
+  font-size: 1em;
+}
+body #command-line textarea:focus, body #command-line textarea:active {
+  border: none;
+  outline: none;
+}
+body nav {
+  width: 100%;
+  display: flex;
+  border-bottom: rgb(244, 244, 244) solid 1px;
+  justify-content: flex-end;
+  background-color: rgb(30, 30, 30);
+  z-index: 999999;
+  position: sticky;
+  top: 0;
+}
+body nav a {
+  text-decoration: none;
+  padding: 1em 1.5em;
+  color: rgb(244, 244, 244);
+}
+body nav a::after {
+  content: "";
+  display: inline-block;
+}
+body nav a.active {
+  color: rgb(20, 210, 118) !important;
+}
+body nav a.active::after {
+  content: "";
+  float: right;
+  display: inline-block;
+  background-color: rgb(244, 244, 244);
+  width: 7px;
+  height: 15px;
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+body nav a:visited {
+  color: rgb(244, 244, 244);
+}
+body nav a:hover::after {
+  content: "";
+  float: right;
+  display: inline-block;
+  background-color: rgb(244, 244, 244);
+  width: 7px;
+  height: 15px;
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+body section.home-intro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+body section.home-intro > div {
+  width: 50%;
+}
+body section.home-intro * {
+  text-align: center;
+}
+body section.home-intro img {
+  flex-basis: 25%;
+  filter: grayscale(100%);
+  border-radius: 30px;
+  margin: 10px;
+}
+body section.home-intro > div {
+  flex-grow: 2;
+}
+body #projects-container img {
+  width: 300px;
+  align-self: center;
+  z-index: -9999999;
+}
+body #projects-container #toContent {
+  display: flex;
+  justify-content: center;
+}
+body #projects-container #toContent a {
+  padding: 5px 10px;
+  margin: 20px 0;
+  color: rgb(244, 244, 244);
+  text-decoration: none;
+}
+body #projects-container #toContent a div {
+  display: block;
+}
+body #projects-container #toContent a div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+body #projects-container #toContent a div:nth-child(2) p {
+  padding: 0;
+}
+body #projects-container #toContent a div:nth-child(2) p:not(.side) {
+  flex-basis: 99%;
+  flex-grow: 2;
+  text-align: center;
+}
+body #projects-container #toContent a div:nth-child(2) p.side {
+  flex-shrink: 2;
+}
+body #projects-container #toContent a div:nth-child(2) p.side:last-child {
+  text-align: right;
+}
+body #projects-container #toContent a span {
+  display: none;
+}
+body #projects-container #toContent a:hover span {
+  display: inline-block;
+}
+body section.home-subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body section.home-subscribe a {
+  padding: 5px 10px;
+  margin: 20px 0;
+  color: rgb(244, 244, 244);
+  text-decoration: none;
+  /*width: 267px;
+  display: block;*/
+}
+body section.home-subscribe a div {
+  display: block;
+}
+body section.home-subscribe a div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+body section.home-subscribe a div:nth-child(2) p {
+  padding: 0;
+}
+body section.home-subscribe a div:nth-child(2) p:not(.side) {
+  flex-basis: 99%;
+  flex-grow: 2;
+  text-align: center;
+}
+body section.home-subscribe a div:nth-child(2) p.side {
+  flex-shrink: 2;
+}
+body section.home-subscribe a div:nth-child(2) p.side:last-child {
+  text-align: right;
+}
+body section.home-subscribe a span {
+  display: none;
+}
+body section.home-subscribe a:hover span {
+  display: inline-block;
+}
+body section.building {
+  display: flex;
+  align-items: center;
+}
+body section.building p {
+  padding: 30px;
+  flex-basis: 50%;
+  flex-grow: 1;
+}
+body section.building div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-grow: 1;
+  flex-basis: 50%;
+}
+body section.building div a {
+  padding: 5px 10px;
+  margin: 20px 0;
+  color: rgb(244, 244, 244);
+  text-decoration: none;
+}
+body section.building div a div {
+  display: block;
+}
+body section.building div a div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+body section.building div a div:nth-child(2) p {
+  padding: 0;
+}
+body section.building div a div:nth-child(2) p:not(.side) {
+  flex-basis: 99%;
+  flex-grow: 2;
+  text-align: center;
+}
+body section.building div a div:nth-child(2) p.side {
+  flex-shrink: 2;
+}
+body section.building div a div:nth-child(2) p.side:last-child {
+  text-align: right;
+}
+body section.building div a span {
+  display: none;
+}
+body section.building div a:hover span {
+  display: inline-block;
+}
+
+.d-lg-none {
+  display: none;
+}
+
+.scale-out-horizontal {
+  -webkit-animation: scale-out-horizontal 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: scale-out-horizontal 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+#terminalToggler {
+  display: none;
+}
+
+@media screen and (max-width: 1330px) {
+  .d-lg-none {
+    display: inline;
+  }
+  #home .building {
+    flex-direction: column;
+  }
+  #home .building .navbar-item {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  #home .building > p {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #terminalEditor {
+    display: none;
+  }
+  #terminalToggler {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: rgb(20, 210, 118);
+    padding: 5px 10px;
+    border: 1px solid rgb(20, 210, 118);
+    background-color: rgb(30, 30, 30);
+    cursor: pointer;
+  }
+  .force-show #terminalToggler {
+    bottom: 200px;
+  }
+  .force-show #terminalEditor {
+    display: block;
+  }
+  #root {
+    overflow-y: visible;
+  }
+}
+@media screen and (max-width: 920px) {
+  body .container.about-page {
+    flex-direction: column;
+    height: 100%;
+  }
+  body .container.about-page .aboutText {
+    width: 100%;
+  }
+  body .container.about-page #skills h2 {
+    text-align: left;
+  }
+  body #projects-container img {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  body #projects-container #toContent {
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+  }
+  body #projects-container #toContent a {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+@media screen and (max-width: 612px) {
+  body #home .building .homeActions {
+    display: flex;
+    flex-direction: column;
+  }
+  body #home .building .homeActions .navbar-item {
+    margin: unset;
+  }
+  body #contacts #contact_line {
+    flex-direction: column;
+    /*&>div:last-child>div{
+      flex-direction: row;
+      flex-wrap: wrap;
+      a{
+        flex-basis: 50%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }*/
+  }
+  body #contacts #contact_line > div {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+@media screen and (max-width: 556px) {
+  nav.navbar .navbar-item {
+    padding: 1em;
+  }
+}
+/* phone */
+@media screen and (max-width: 500px) {
+  body #openCloseLabel {
+    display: block;
+    line-height: 30%;
+  }
+  body .navbar.is-primary {
+    justify-content: center;
+  }
+  body .navbar.is-primary button {
+    background-color: rgb(30, 30, 30);
+    color: rgb(244, 244, 244);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+    border: 1px solid rgb(244, 244, 244);
+    border-radius: 10px;
+  }
+  body .navbar.is-primary a {
+    display: none;
+  }
+  body #openCloseMenu:checked + .navbar.is-primary {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(30, 30, 30);
+  }
+  body #openCloseMenu:checked + .navbar.is-primary a {
+    display: block;
+    border-top: 1px solid rgb(244, 244, 244);
+    width: 100%;
+    text-align: center;
+  }
+  body #openCloseMenu:checked + .navbar.is-primary a::after {
+    float: none;
+  }
+  body #home .home-intro {
+    flex-direction: column;
+  }
+  body #home .home-intro div {
+    width: 100%;
+  }
+  body #projects-container > div {
+    z-index: -99999999999;
+  }
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2023-2-3 23:8:0
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation scale-out-horizontal
+ * ----------------------------------------
+ */
+@-webkit-keyframes scale-out-horizontal {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-horizontal {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+}
+@keyframes left-to-right {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes right-to-left {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,11 +1,11 @@
-import React, {useState}  from "react";
+import {useState}  from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import Home from './Home.tsx'
 import {About} from './About.tsx'
 import Projects from './Projects.tsx'
 import Contact from './Contact.tsx'
 import Error404 from './Error404.tsx'
-import CommandLine from './CommandLine'
+import CommandLine from './CommandLine.tsx'
 import ConfirmSubscription from "./ConfirmSubscription.tsx";
 import Login from "./Login.tsx";
 

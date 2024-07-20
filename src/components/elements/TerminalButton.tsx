@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-export default function TerminalButton({href,text}){
+type ButtonProps = {
+  href: string;
+  text: string;
+}
+
+const TerminalButton: React.FC<ButtonProps> = ({href,text}) =>{
   return(
     <NavLink className="navbar-item" to={href} >
       <div>+-------<span className="d-lg-none" >--</span>-------------------+</div>
@@ -14,3 +19,5 @@ export default function TerminalButton({href,text}){
     </NavLink>
   );
 }
+
+export default TerminalButton;

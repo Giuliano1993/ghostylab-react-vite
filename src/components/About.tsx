@@ -1,8 +1,11 @@
-import React from "react";
+import React from 'react';
 import '../assets/css/style.css';
 
+type SkillBoxProps = {
+  skill: string
+}
 
-export const SkillBox = (props)=>{
+export const SkillBox: React.FC<SkillBoxProps> = (props)=>{
   // TODO : add dropdown alle skill, con stile ls alberato
   // mostrando conoscenze relative tipo su php -> laravel, symfony, wordpress
   // su js ->react e vue

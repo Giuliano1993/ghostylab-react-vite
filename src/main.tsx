@@ -1,8 +1,7 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import './index.css'
-import Intro from './components/Intro';
+import Intro from './components/Intro.js';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { TerminalContextProvider } from 'react-terminal';
 

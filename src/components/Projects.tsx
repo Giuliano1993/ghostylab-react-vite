@@ -1,4 +1,3 @@
-import React from "react";
 import TerminalButton from "./elements/TerminalButton.tsx";
 import labImg from '../assets/pics/LAB_TAB.png';
 

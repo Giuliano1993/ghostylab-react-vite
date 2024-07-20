@@ -1,4 +1,3 @@
-import React from "react";
 import photo from  '../assets/pics/thisisme.jpeg'
 import TerminalButton from "./elements/TerminalButton.tsx";
 

@@ -3,17 +3,27 @@ import { ReactTerminal } from "react-terminal";
 import { skills } from "./About.tsx";
 import axios from "axios";
 import { useRef } from "react";
-const CommandLine = () => {
+
+
+type Article = {
+  title: string,
+  url: string,
+  id: number,
+  collection_id: number
+}
+const CommandLine = (): JSX.Element => {
   const navigate  = useNavigate();
 
-  const terminalReference = useRef(null);
+  const terminalReference = useRef<HTMLElement>(null);
 
   const toggleTerminal = ()=>{
 
     const terminalContainer = terminalReference.current;
-    terminalContainer.classList.toggle('force-show')
+    
+      terminalContainer?.classList.toggle('force-show')
+    
   }
-  const skillsRows = []
+  const skillsRows: JSX.Element[] = []
   skills.forEach((el)=>{
     skillsRows.push(<div key={el}>{el}</div>);
   })
@@ -21,7 +31,7 @@ const CommandLine = () => {
   const commands = {
     whoami: "jackharper",
     //cd: (directory) => `changed path to ${directory}`
-    cd: (path) => path !== 'home' && path !== 'subscribe' ? navigate('/'+path) : ( path !== 'subscribe' ? navigate('/') : window.location.replace('https://194f384b.sibforms.com/serve/MUIFAIKyVXuwU_3zwEsAWhAEVpQKwfLDf9-O6Qyr0VyjfW1bYN9LpmHp7Jf9NLjIivYWIeOQylYqBqp69tnhbqTn_1bQbUbcYRa3kqjdlm8adgu6_-Iw5kMvLORgvELqQFX94PN7PS7-g_dJyvHbLegf6BOzDmzIPjwW6Z-FztPnBq8YuhpXmJGV-Qj2-RtQSVvAQw6fEIk7KtLP')),
+    cd: (path: string) => path !== 'home' && path !== 'subscribe' ? navigate('/'+path) : ( path !== 'subscribe' ? navigate('/') : window.location.replace('https://194f384b.sibforms.com/serve/MUIFAIKyVXuwU_3zwEsAWhAEVpQKwfLDf9-O6Qyr0VyjfW1bYN9LpmHp7Jf9NLjIivYWIeOQylYqBqp69tnhbqTn_1bQbUbcYRa3kqjdlm8adgu6_-Iw5kMvLORgvELqQFX94PN7PS7-g_dJyvHbLegf6BOzDmzIPjwW6Z-FztPnBq8YuhpXmJGV-Qj2-RtQSVvAQw6fEIk7KtLP')),
     ls: ()=> <div>
       <p>home</p>
       <p>about</p>
@@ -43,7 +53,7 @@ const CommandLine = () => {
       const articles = await axios.get("https://dev.to/api/articles?username=giuliano1993&per_page=20").then((res)=>{
         return res.data
       })
-      return articles.filter((a)=>a.collection_id !== 25147).map((a)=><div><a href={a.url}>{a.title}</a></div>)
+      return articles.filter((a: Article)=>a.collection_id !== 25147).map((a: Article)=><div><a href={a.url}>{a.title}</a></div>)
     },
     help: <div>
         <p><b>CD </b> prompt:  go to this page</p>
@@ -74,7 +84,7 @@ const CommandLine = () => {
     </div>
   };
   return(
-    <div ref={terminalReference}>
+    <div ref={terminalReference as React.RefObject<HTMLDivElement>}>
     <div id="terminalToggler" onClick={toggleTerminal}>
       Toggle Terminal
     </div>

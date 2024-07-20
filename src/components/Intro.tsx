@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../assets/css/style.css'
-import Navbar from './Navbar.tsx'
+import Navbar from './Navbar';
 import { useLocation } from 'react-router-dom'
 
-const Intro = () => {
-  const delay = ms => new Promise(res => setTimeout(res, ms));
-  const initialIntroduced = window.localStorage.getItem('introduced') || false;
+const Intro = (): JSX.Element => {
+  const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+  const initialIntroduced = window.localStorage.getItem('introduced') === 'true' || false;
   const [introduced, setIntroduced] = useState(initialIntroduced);
 
   const location = useLocation();
@@ -16,16 +16,16 @@ const Intro = () => {
           document.getElementById('welcome-container')?.classList.add('scale-out-horizontal')
           setTimeout(() => {
             setIntroduced(true);
-            window.localStorage.setItem('introduced',true)
+            window.localStorage.setItem('introduced','true')
           }, 500);
           
         }
       })
-      document.addEventListener('click', function (e) {
+      document.addEventListener('click', function () {
           document.getElementById('welcome-container')?.classList.add('scale-out-horizontal')
           setTimeout(() => {
             setIntroduced(true);
-            window.localStorage.setItem('introduced',true)  
+            window.localStorage.setItem('introduced','true')  
           }, 500);
       })
       write().then(() => {
@@ -50,7 +50,7 @@ const Intro = () => {
 
 
   const write = async () => {
-    var lines = [
+    const lines = [
       "Welcome to Ghostylab",
       "This is the place where i put my works,",
       "experiments,",
@@ -62,31 +62,35 @@ const Intro = () => {
     }
   }
 
-  const writeEs8 = async (text) => {
+  const writeEs8 = async (text: string) => {
     try {
-      var speed = 100;
+      const speed = 100;
       for (let i = 0; i < text.length; i++) {
-        let el = document.getElementById('welcomeText')
-        let html = el.innerHTML;
-        el.innerHTML = html + text.charAt(i);
+        const el = document.getElementById('welcomeText')
+        const html = el?.innerHTML;
+        if(el){
+          el.innerHTML = html + text.charAt(i);
+        }
         await delay(speed)
       }
-      var html = document.getElementById('welcomeText').innerHTML;
-      document.getElementById('welcomeText').innerHTML = html + '<br>';
+      const welcomeText = document.getElementById('welcomeText');
+      const html = welcomeText?.innerHTML;
+      if(welcomeText){
+        welcomeText.innerHTML = html + '<br>';
+      }
     } catch (err) {
       console.error(err)
     }
   }
 
   if (!introduced && location.pathname === '/') {
-    return (
-      <div id="welcome-container" className="container">
+    return( <div id="welcome-container" className="container">
         <div>
           <span id="welcomeText"></span>
           <span className="pointer"></span>
         </div>
-      </div>
-    );
+      </div>)
+    ;
   } else {
     return (
         <Navbar></Navbar>

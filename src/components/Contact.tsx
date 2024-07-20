@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Client, Account, ID } from "appwrite";
+import { Client, Account } from "appwrite";
 
 import TerminalButton from "./elements/TerminalButton.tsx";
 
@@ -40,7 +40,7 @@ const Contact = ()=>{
     console.log(import.meta.env.VITE_APPWRITE_PROJECT) 
     checkLogged();
   },[])
-  const handleData = e =>{
+  const handleData = ( e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement> ) =>{
     setFormData({
       ...formData,
       [e.target.name]:e.target.value
@@ -86,7 +86,7 @@ const Contact = ()=>{
       setErrorMessage("Mail field cannot be empty")
     }
 
-    let pattern = new RegExp(/^(('[\w-\s]+')|([\w-]+(?:\.[\w-]+)*)|('[\w-\s]+')([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    const pattern = new RegExp(/^(('[\w-\s]+')|([\w-]+(?:\.[\w-]+)*)|('[\w-\s]+')([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if(!pattern.test(formData.mail.trim())){
       formIsValid = false;
       setErrors({
@@ -110,7 +110,7 @@ const Contact = ()=>{
 
     return formIsValid
   }
-  const handleSubmit = (event)=>{
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>)=>{
     event.preventDefault();
     if(!validateForm()) return;
     fetch("/", {

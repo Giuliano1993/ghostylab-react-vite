@@ -1,4 +1,4 @@
-import React from "react";
+
 import SubscriptionForm from "./elements/SubscriptionForm.tsx";
 import MondevLogo from "../assets/pics/mondev.png";
 

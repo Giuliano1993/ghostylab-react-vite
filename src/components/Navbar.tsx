@@ -1,5 +1,5 @@
-import {useState}  from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
+import {useEffect, useState}  from "react";
+import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import Home from './Home.tsx'
 import {About} from './About.tsx'
 import Projects from './Projects.tsx'
@@ -8,14 +8,44 @@ import Error404 from './Error404.tsx'
 import CommandLine from './CommandLine.tsx'
 import ConfirmSubscription from "./ConfirmSubscription.tsx";
 import Login from "./Login.tsx";
+import Logout from "./Logout.tsx";
 
 const Navbar = ()=>{
   const [menuOpen, setMenuOpen] = useState(false);
   const switchMenuOpen = ()=>{
     setMenuOpen(!menuOpen);
   }
+ /* const [user, setUser] = useState(null);
+  
+  type ProtectedRoutesType = {
+    user: {
+      id: string
+    },
+    children: JSX.Element[]
+  }
+  const ProtectedRoutes = ({user,children}:ProtectedRoutesType)=>{
+    if(!user){
+      return <Navigate to="/" replace/>
+    }
+    return children;
+  }
+  const checkLogged = async () =>{
+    const client = new Client()
+    .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT) 
+    .setProject(import.meta.env.VITE_APPWRITE_PROJECT);
 
-
+    const account = new Account(client);
+    try {
+        const user = await account.get();
+        setUser(user);
+        console.log(user)
+    } catch (err) {
+        console.log(err);
+    }
+  }
+  useEffect(()=>{
+    checkLogged();
+  })*/
 
   return (
     <>
@@ -50,7 +80,11 @@ const Navbar = ()=>{
         <Route path='/contact' element={<Contact/>} />
         <Route path='/confirm-subscription' element={<ConfirmSubscription/>} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/logout' element={<Logout/>} />
         <Route path="*" element={<Error404 />} />
+        {/* <Route element={<ProtectedRoutes user={user} />} >
+          <Route path='/protected' element={<p>Protected</p>} />
+        </Route> */}
     </Routes>
     {/* <ReactTerminal id="terminal" commands={commands} showControlBar={false} theme={"matrix"} prompt={">"} welcomeMessage={<p>Type help to check the available commands<br/></p>}/> */}
     <CommandLine></CommandLine>

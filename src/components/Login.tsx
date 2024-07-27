@@ -1,64 +1,32 @@
-import { Client, Account} from "appwrite";
-import React, { useState } from "react";
+import { useState, useEffect } from 'react'
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import supabase from '../utils/supabase'
+import { Session } from '@supabase/supabase-js'
 
 
 
-export default function Login() {
+export default function App() {
+  const [session, setSession] = useState<Session|null>(null)
 
+  useEffect(() => {
+	supabase.auth.getSession().then(({ data: { session } }) => {
+		setSession(session)
+	})
 
+	const {
+		data: { subscription },
+	} = supabase.auth.onAuthStateChange((_event, session) => {
+		setSession(session)
+	})
 
-	
+	return () => subscription.unsubscribe()
+  }, [])
 
-	
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
-	const [loading, setLoading] = useState(false);
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		setLoading(true);
-		setError("");
-		try {
-			const client = new Client()
-			.setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT) 
-			.setProject(import.meta.env.VITE_APPWRITE_PROJECT);
-		
-			const account = new Account(client);
-			const promise = account.createEmailPasswordSession(email, password);
-
-			promise.then(function (response) {
-				console.log(response); // Success
-			}, function (error) {
-				console.log(error); // Failure
-			});
-		} catch (error) {
-			setError("An error occurred");
-		}
-		setLoading(false);
-	};
-	return  <form onSubmit={handleSubmit}>
-			<div>
-				<label htmlFor="email">Email</label>
-				<input
-					type="email"
-					id="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-			</div>
-			<div>
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
-					id="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-			</div>
-			<button type="submit" disabled={loading}>
-				{loading ? "Loading..." : "Login"}
-			</button>
-			{error && <div>{error}</div>}
-		</form>;
+  if (!session) {
+	return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+  }
+  else {
+	return (<div>Logged in!</div>)
+  }
 }

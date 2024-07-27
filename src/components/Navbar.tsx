@@ -9,43 +9,32 @@ import CommandLine from './CommandLine.tsx'
 import ConfirmSubscription from "./ConfirmSubscription.tsx";
 import Login from "./Login.tsx";
 import Logout from "./Logout.tsx";
+import supabase from "../utils/supabase.ts";
+import { User } from "@supabase/supabase-js";
 
 const Navbar = ()=>{
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const switchMenuOpen = ()=>{
     setMenuOpen(!menuOpen);
   }
- /* const [user, setUser] = useState(null);
-  
-  type ProtectedRoutesType = {
-    user: {
-      id: string
-    },
-    children: JSX.Element[]
-  }
-  const ProtectedRoutes = ({user,children}:ProtectedRoutesType)=>{
-    if(!user){
-      return <Navigate to="/" replace/>
-    }
-    return children;
-  }
-  const checkLogged = async () =>{
-    const client = new Client()
-    .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT) 
-    .setProject(import.meta.env.VITE_APPWRITE_PROJECT);
 
-    const account = new Account(client);
-    try {
-        const user = await account.get();
-        setUser(user);
-        console.log(user)
+  const checkLogged = async () =>{
+    const { data: { user } } = await supabase.auth.getUser()
+      
+      
+      try {
+        if(user){
+          setIsLoggedIn(true);
+          console.log(user);
+        }
     } catch (err) {
         console.log(err);
     }
   }
   useEffect(()=>{
     checkLogged();
-  })*/
+  },[])
 
   return (
     <>
@@ -82,9 +71,10 @@ const Navbar = ()=>{
         <Route path='/login' element={<Login/>} />
         <Route path='/logout' element={<Logout/>} />
         <Route path="*" element={<Error404 />} />
-        {/* <Route element={<ProtectedRoutes user={user} />} >
+        {isLoggedIn ? (
           <Route path='/protected' element={<p>Protected</p>} />
-        </Route> */}
+        ):( 
+        <Route path="/protected" element={<Navigate to="/" replace />} />) }
     </Routes>
     {/* <ReactTerminal id="terminal" commands={commands} showControlBar={false} theme={"matrix"} prompt={">"} welcomeMessage={<p>Type help to check the available commands<br/></p>}/> */}
     <CommandLine></CommandLine>

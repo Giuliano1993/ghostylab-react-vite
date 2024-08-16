@@ -645,6 +645,45 @@ body section.building div a:hover span {
   display: none;
 }
 
+#projectForm{
+  width: 100%;
+  padding: 0 20px;
+  > div {
+    & > label {
+      display: block;
+      margin-top: 10px;
+    }
+    & > input {
+      
+      width: 30%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    & > textarea {
+      padding: 10px;
+      margin-top: 5px;
+      width: 100%;
+    }
+    &:last-child{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: end;
+      button  {
+        background: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 0.5em 3em;
+        font-family: "Inconsolata", monospace;
+        border: 1px solid white;
+        margin-top: 1em;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1330px) {
   .d-lg-none {
     display: inline;

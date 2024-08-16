@@ -1,4 +1,4 @@
-import {useEffect, useState}  from "react";
+import {Suspense, useDeferredValue, useEffect, useState, useRef}  from "react";
 import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import Home from './Home.tsx'
 import {About} from './About.tsx'
@@ -10,31 +10,22 @@ import ConfirmSubscription from "./ConfirmSubscription.tsx";
 import Login from "./Login.tsx";
 import Logout from "./Logout.tsx";
 import supabase from "../utils/supabase.ts";
-import { User } from "@supabase/supabase-js";
+import useToken from "../utils/useToken.tsx";
+import ProjectIndexPage from "../Pages/Admin/Projects/index.tsx";
+import CreateProject from "../Pages/Admin/Projects/create.tsx";
+
+
+
 
 const Navbar = ()=>{
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {token, setToken} = useToken();
+  const [isLoggedIn] = useState(token);
   const [menuOpen, setMenuOpen] = useState(false);
   const switchMenuOpen = ()=>{
     setMenuOpen(!menuOpen);
   }
 
-  const checkLogged = async () =>{
-    const { data: { user } } = await supabase.auth.getUser()
-      
-      
-      try {
-        if(user){
-          setIsLoggedIn(true);
-          console.log(user);
-        }
-    } catch (err) {
-        console.log(err);
-    }
-  }
-  useEffect(()=>{
-    checkLogged();
-  },[])
+  
 
   return (
     <>
@@ -71,12 +62,17 @@ const Navbar = ()=>{
         <Route path='/login' element={<Login/>} />
         <Route path='/logout' element={<Logout/>} />
         <Route path="*" element={<Error404 />} />
-        {isLoggedIn ? (
-          <Route path='/protected' element={<p>Protected</p>} />
+        
+        {isLoggedIn ? (<>
+          <Route path='/admin/projects' element={<ProjectIndexPage />} />
+          <Route path='/admin/projects/new' element={<CreateProject/>} />
+          <Route path='/admin/projects/:id/edit' element={<p>Protected </p>} />
+          
+        </>
         ):( 
-        <Route path="/protected" element={<Navigate to="/" replace />} />) }
+        <Route path="/admin/*" element={<Navigate to="/" replace />} />) }
+        
     </Routes>
-    {/* <ReactTerminal id="terminal" commands={commands} showControlBar={false} theme={"matrix"} prompt={">"} welcomeMessage={<p>Type help to check the available commands<br/></p>}/> */}
     <CommandLine></CommandLine>
   </>
   )

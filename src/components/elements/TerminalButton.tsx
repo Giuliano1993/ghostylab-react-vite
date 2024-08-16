@@ -1,10 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-type ButtonProps = {
-  href: string;
-  text: string;
-}
+
 
 const TerminalButton: React.FC<ButtonProps> = ({href,text}) =>{
   return(

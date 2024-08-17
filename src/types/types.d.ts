@@ -11,5 +11,10 @@ type Project = {
     image: string
 }
 type ProjectLineProps = {
-    project: Project
+    project: Project,
+    onChange: ()=>void
 }
+
+type SkillBoxProps = {
+    skill: string
+  }

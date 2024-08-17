@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ReactTerminal } from "react-terminal";
-import { skills } from "./About.tsx";
+import { skills } from "../Pages/About.tsx";
 import axios from "axios";
 import { useRef } from "react";
 

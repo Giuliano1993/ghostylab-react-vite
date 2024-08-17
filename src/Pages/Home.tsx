@@ -1,5 +1,5 @@
 import photo from  '../assets/pics/thisisme.jpeg'
-import TerminalButton from "./elements/TerminalButton.tsx";
+import TerminalButton from "../components/elements/TerminalButton.tsx";
 
 const Home = () => { 
  

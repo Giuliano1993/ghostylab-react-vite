@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Client, Account } from "appwrite";
 
-import TerminalButton from "./elements/TerminalButton.tsx";
+import TerminalButton from "../components/elements/TerminalButton.tsx";
 
 //import { useLocation } from "react-router-dom";
 

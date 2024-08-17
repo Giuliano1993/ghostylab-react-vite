@@ -1,9 +1,7 @@
 import React from 'react';
 import '../assets/css/style.css';
 
-type SkillBoxProps = {
-  skill: string
-}
+
 
 export const SkillBox: React.FC<SkillBoxProps> = (props)=>{
   // TODO : add dropdown alle skill, con stile ls alberato
@@ -32,7 +30,7 @@ export const skills = [
   "Vue",
   "Python"
 ]; 
-export const About = () => {
+const About = () => {
 
 
   const skillsRows: JSX.Element[] = []
@@ -66,6 +64,8 @@ export const About = () => {
     
   )
 }
+
+export default About;
 
 //export {About, SkillBox, skills};
 

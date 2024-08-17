@@ -1,15 +1,14 @@
-import {Suspense, useDeferredValue, useEffect, useState, useRef}  from "react";
+import { useState }  from "react";
 import { NavLink, Routes, Route, Navigate } from "react-router-dom";
-import Home from './Home.tsx'
-import {About} from './About.tsx'
-import Projects from './Projects.tsx'
-import Contact from './Contact.tsx'
-import Error404 from './Error404.tsx'
+import Home from '../Pages/Home.tsx'
+import About from '../Pages/About.tsx'
+import Projects from '../Pages/Projects.tsx'
+import Contact from '../Pages/Contact.tsx'
+import Error404 from '../Pages/Error404.tsx'
 import CommandLine from './CommandLine.tsx'
 import ConfirmSubscription from "./ConfirmSubscription.tsx";
-import Login from "./Login.tsx";
+import Login from "../Pages/Login.tsx";
 import Logout from "./Logout.tsx";
-import supabase from "../utils/supabase.ts";
 import useToken from "../utils/useToken.tsx";
 import ProjectIndexPage from "../Pages/Admin/Projects/index.tsx";
 import CreateProject from "../Pages/Admin/Projects/create.tsx";
@@ -18,7 +17,7 @@ import CreateProject from "../Pages/Admin/Projects/create.tsx";
 
 
 const Navbar = ()=>{
-  const {token, setToken} = useToken();
+  const {token} = useToken();
   const [isLoggedIn] = useState(token);
   const [menuOpen, setMenuOpen] = useState(false);
   const switchMenuOpen = ()=>{

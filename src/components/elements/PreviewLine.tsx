@@ -7,10 +7,10 @@ const supabaseStorage = import.meta.env.VITE_SUPABASE_STORAGE_PATH;
 const supabaseBucket = import.meta.env.VITE_SUPABASE_STORAGE_BUCKET;
 
 const PreviewLine: React.FC<ProjectLineProps> = ({project,onChange}) => {
-
+    const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
     const deleteAction = async (id: number) => {
         console.log(id);
-        const {data,error} = await supabase.from('Projects').delete().eq("id",id);
+        const {data,error} = await supabase.from(projectTable).delete().eq("id",id);
         if(error){
             console.log(error);
         }else{

@@ -12,6 +12,7 @@ import Logout from "./Logout.tsx";
 import useToken from "../utils/useToken.tsx";
 import ProjectIndexPage from "../Pages/Admin/Projects/index.tsx";
 import CreateProject from "../Pages/Admin/Projects/create.tsx";
+import EditProject from "../Pages/Admin/Projects/edit.tsx";
 
 
 
@@ -65,7 +66,7 @@ const Navbar = ()=>{
         {isLoggedIn ? (<>
           <Route path='/admin/projects' element={<ProjectIndexPage />} />
           <Route path='/admin/projects/new' element={<CreateProject/>} />
-          <Route path='/admin/projects/:id/edit' element={<p>Protected </p>} />
+          <Route path='/admin/projects/:id/edit' element={<EditProject/>} />
           
         </>
         ):( 

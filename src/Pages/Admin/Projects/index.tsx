@@ -5,13 +5,12 @@ import PreviewLine from "../../../components/elements/PreviewLine.tsx";
 const ProjectIndexPage = () => {
     const [projects, setProjects] = useState<Array<Project>>([]);
     const [loading, setLoading] = useState<boolean>(false);  
+    const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
     useEffect(()=>{
         
         const getProjects = async () => {
             setLoading(true);
-            const user = await  supabase.auth.getUser();
-            console.log(user);
-            const {data, error} = await supabase.from('Projects').select('*');
+            const {data, error} = await supabase.from(projectTable).select('*');
 
             if(error){
                 console.log(error.message);
@@ -29,7 +28,7 @@ const ProjectIndexPage = () => {
 
         const getProjects = async () => {
             setLoading(true);
-            const {data, error} = await supabase.from('Projects').select('*');
+            const {data, error} = await supabase.from(projectTable).select('*');
 
             if(error){
                 console.log(error.message);

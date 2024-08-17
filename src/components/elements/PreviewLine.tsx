@@ -18,10 +18,12 @@ const PreviewLine: React.FC<ProjectLineProps> = ({project,onChange}) => {
             onChange(); 
         }
     }
-    return(<div key={project.id}>
-        <h2>{project.name}</h2>
-        <p>{project.description}</p>
-        <img src={`${supabaseUrl}/${supabaseStorage}/${supabaseBucket}/${project.image}`} alt={project.name}/> 
+    return(<div key={project.id} className="adminProjectRow">
+        <div>
+            <h2>{project.name}</h2>
+            <p>{project.description}</p>
+        </div> 
+        <img className="" src={`${supabaseUrl}/${supabaseStorage}/${supabaseBucket}/${project.image}`} alt={project.name}/> 
         <div className="actions">
             <a className="btn " href={project.link}>Link</a>
             <a className="btn edit" href={`/admin/projects/${project.id}/edit`}>Modifica</a>

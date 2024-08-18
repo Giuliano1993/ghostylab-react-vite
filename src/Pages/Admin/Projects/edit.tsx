@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../../../utils/supabase';
 import { useParams } from 'react-router-dom';
-
+import Project from '../../../Models/Project';
+import { useNavigate } from 'react-router-dom';
 const EditProject: React.FC = () => {
 
     const {id} = useParams();
@@ -9,30 +10,24 @@ const EditProject: React.FC = () => {
     const [description, setDescription] = useState<string>('');
     const [link, setLink] = useState<string>('');
     const [picture, setPicture] = useState<null|File>(null);
+    const [isPublic, setIsPublic] = useState<boolean>(false); 
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-    const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
-
+    const navigate = useNavigate();
 
     useEffect(()=>{
-        const getProject = async () => {
-
-            const {data,error} = await supabase.from(projectTable).select('*').eq('id',id);
-            if(error){
-                console.log(error.message);
-            }else{
-                console.log(data);
-                    setName(data[0].name);
-                    setDescription(data[0].description);
-                    setLink(data[0].link);
-                
-                    console.log(name,description,link);
-            }
-
-            
+        if(!id || isNaN(parseInt(id))){
+            navigate('/admin/projects');
+            return;
         }
-
-        getProject();
+        Project.get(parseInt(id)).then((data) => {
+            if(data){
+                setName(data.name);
+                setDescription(data.description);
+                setLink(data.link);
+                setIsPublic(data.public);
+            }
+        })
     },[]);
 
     const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +36,7 @@ const EditProject: React.FC = () => {
         setError('');
         try {
             setLoading(true);
-            let image = null;
+            let image = '';
             if(picture){
                 const name = `${(new Date()).getTime()  + picture?.name}`;
                 const {data, error} = await supabase.storage.from('projects').upload(`assets/${name}`, picture);
@@ -54,14 +49,14 @@ const EditProject: React.FC = () => {
                 
             }
             const updatedProject = {
-                name,description,link
+                name,description,link, image, public:isPublic
             }
-            const { data, error } = await supabase
-            .from('Projects')
-            .update(updatedProject)
-            .eq('id', id);
-            if(data){
+            if(!id || isNaN(parseInt(id))) return
+            const success = await Project.update(parseInt(id), updatedProject);
+            
+            if(success){
                 setLoading(false);
+                navigate('/admin/projects');
             }
             if(error){
                 console.log(error);
@@ -70,12 +65,13 @@ const EditProject: React.FC = () => {
             setError(error.message);
         }
         setLoading(false);
+        
     }
 
 
     return (
         <div>
-            <h1>Create Project</h1>
+            <h1>Edit Project</h1>
             <form onSubmit={formSubmit} id="projectForm">
                 <div>
                     <label htmlFor="name">Name</label>
@@ -88,6 +84,10 @@ const EditProject: React.FC = () => {
                 <div>
                     <label htmlFor="link">Link</label>
                     <input type="text" name="link" id="link" onChange={e=>setLink(e.target.value)} required value={link}/>
+                </div>
+                <div>
+                    <label htmlFor="public">Pubblico</label>
+                    <input type="checkbox" name="public" id="public" onChange={e=>setIsPublic(e.target.checked)} checked={isPublic} />
                 </div>
                 <div>
                     <label htmlFor="picture">Immagine</label>

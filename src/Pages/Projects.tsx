@@ -1,10 +1,8 @@
 //import TerminalButton from "../components/elements/TerminalButton.tsx";
 //import labImg from '../assets/pics/LAB_TAB.png';
 import { useEffect, useState } from "react";
-import supabase from "../utils/supabase.ts";
 import ProjectPreviewRow from "../components/elements/ProjectPreviewRow.tsx";
-
-const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
+import Project from "../Models/Project.ts";
 
 const Projects = () => {
   const [projects, setProjects] = useState<Array<Project>>([]);
@@ -14,14 +12,10 @@ const Projects = () => {
         
     const getProjects = async () => {
         setLoading(true);
-        const {data, error} = await supabase.from(projectTable).select('*');
-
-        if(error){
-            console.log(error.message);
-        }else{
+        Project.all().then((data) => {
             setProjects(data);
             setLoading(false);
-        }
+        })
     }
     getProjects();
 

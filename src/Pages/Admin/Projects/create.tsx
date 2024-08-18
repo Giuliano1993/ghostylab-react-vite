@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import supabase from '../../../utils/supabase';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject: React.FC = () => {
 
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [link, setLink] = useState<string>('');
+    const [isPublic, setIsPublic] = useState<boolean>(false);
     const [picture, setPicture] = useState<null|File>(null);
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
+
 
 
     const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +38,7 @@ const CreateProject: React.FC = () => {
                 
             }
             const newProject = {
-                name,description,link,image
+                name,description,link,image,public:isPublic
             }
             const { data, error } = await supabase
             .from(projectTable)
@@ -53,6 +57,7 @@ const CreateProject: React.FC = () => {
             setError(error.message);
         }
         setLoading(false);
+        navigate('/admin/projects');
     }
 
 
@@ -71,6 +76,10 @@ const CreateProject: React.FC = () => {
                 <div>
                     <label htmlFor="link">Link</label>
                     <input type="text" name="link" id="link" onChange={e=>setLink(e.target.value)} required/>
+                </div>
+                <div>
+                    <label htmlFor="public">Pubblico</label>
+                    <input type="checkbox" name="public" id="public" onChange={e=>setIsPublic(e.target.checked)} />
                 </div>
                 <div>
                     <label htmlFor="picture">Immagine</label>

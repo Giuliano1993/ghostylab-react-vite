@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
-import supabase from "../../../utils/supabase";
 import PreviewLine from "../../../components/elements/PreviewLine.tsx";
+import Project  from "../../../Models/Project.ts";
 
 const ProjectIndexPage = () => {
     const [projects, setProjects] = useState<Array<Project>>([]);
     const [loading, setLoading] = useState<boolean>(false);  
-    const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
     useEffect(()=>{
         
         const getProjects = async () => {
             setLoading(true);
-            const {data, error} = await supabase.from(projectTable).select('*');
-
-            if(error){
-                console.log(error.message);
-            }else{
+            Project.all().then((data: Project[]) => {
                 setProjects(data);
                 setLoading(false);
-            }
+            })
         }
         getProjects();
 
@@ -25,26 +20,23 @@ const ProjectIndexPage = () => {
 
     const refreshProjects = async () => {
         console.log("refreshing...");
-
-        const getProjects = async () => {
-            setLoading(true);
-            const {data, error} = await supabase.from(projectTable).select('*');
-
-            if(error){
-                console.log(error.message);
-            }else{
-                setProjects(data);
-                setLoading(false);
-            }
-        }
-        getProjects();
-        console.log("refreshed");
+        setLoading(true);
+        Project.all().then((data: Project[]) => {
+            setProjects(data);
+            setLoading(false);
+        })
     }
     
     return (
-        <div>
-            <h1>Projects</h1>
-            <p>Projects Index Page</p>
+        <div id="admin-projects">
+            <div className="header">
+                <div>
+                    <h1>Projects</h1>
+                    <p>Projects Index Page</p>
+                </div>
+                <a className="btn" href="/admin/projects/new">New Project</a>
+            </div>
+
             {loading ? ( 
                 <p>Loading...</p> 
             ) : (

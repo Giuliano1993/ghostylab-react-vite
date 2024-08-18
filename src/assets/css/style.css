@@ -26,14 +26,44 @@
     filter: grayscale(0%);
   }
 }
+#admin-projects{
+  padding: 1em;
+  .header{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    &>div{
+      display: flex;
+      flex-direction: column;
+    }
+    a{
+      align-self: center;
+      
+    }
+    border-bottom: 1px solid white;
+    padding-bottom: 1em;
+    margin-bottom: 3em;
+  }
+}
+
+.btn{
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Inconsolata", monospace;
+  border: 1px solid white;
+  padding: 0.5em;
+  text-align: center;
 
 
+}
 .adminProjectRow{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 1em;
-  padding:0 1em;
+  
   margin-top: 1em;
   img{
     width: 100px;
@@ -936,4 +966,3 @@ body section.building div a:hover span {
   }
 }
 
-/*# sourceMappingURL=style.css.map */

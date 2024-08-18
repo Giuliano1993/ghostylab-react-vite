@@ -21,7 +21,7 @@ type SkillBoxProps = {
 }
 
 interface ProjectInterface {
-  all: () => Promise<Array<Project>>;
+  all: (publicOnly?: boolean) => Promise<Array<Project>>;
   get: (id: number) => Promise<Project | null>;
   create: (data: Project) => Promise<Project | null>;
   update: (id: number, data: Project) => Promise<boolean | null>;

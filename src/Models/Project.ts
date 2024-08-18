@@ -4,8 +4,12 @@ const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
 
 
 const Project: ProjectInterface = {
-    all: async () => {
-        const {data, error} = await supabase.from(projectTable).select('*');
+    all: async (publicOnly = false) => {
+        const query = supabase.from(projectTable).select('*');
+        if(publicOnly){
+            query.is('public',true);
+        }
+        const {data, error} = await query;
         if(error){
             console.log(error.message);
             return []
@@ -34,7 +38,7 @@ const Project: ProjectInterface = {
     },
     update : async (id, project) => {
         
-        const { data, error } = await supabase.from(projectTable).update(project).eq('id', id);
+        const { error } = await supabase.from(projectTable).update(project).eq('id', id);
         if(error){
             throw new Error(error.message);
         }
@@ -43,7 +47,7 @@ const Project: ProjectInterface = {
         return true;
     },
     delete : async (id) => {
-        const {data,error} = await supabase.from(projectTable).delete().eq("id",id);
+        const {error} = await supabase.from(projectTable).delete().eq("id",id);
         if(error){
             throw new Error(error.message);
             console.log(error);

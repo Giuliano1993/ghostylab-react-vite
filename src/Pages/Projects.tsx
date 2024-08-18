@@ -1,5 +1,5 @@
 //import TerminalButton from "../components/elements/TerminalButton.tsx";
-//import labImg from '../assets/pics/LAB_TAB.png';
+import labImg from '../assets/pics/LAB_TAB.png';
 import { useEffect, useState } from "react";
 import ProjectPreviewRow from "../components/elements/ProjectPreviewRow.tsx";
 import Project from "../Models/Project.ts";
@@ -12,7 +12,7 @@ const Projects = () => {
         
     const getProjects = async () => {
         setLoading(true);
-        Project.all().then((data) => {
+        Project.all(true).then((data) => {
             setProjects(data);
             setLoading(false);
         })
@@ -25,11 +25,15 @@ const Projects = () => {
   return (
 
     <div id="projects-container" className="container">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        projects.map((p: Project) => <ProjectPreviewRow project={p} key={p.id}/> )
-      )}
+      <img src={labImg} alt="an hash art of laboratory tools"/>
+      <h1>My projects</h1>
+      <div className="toContent">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          projects.map((p: Project) => <ProjectPreviewRow project={p} key={p.id}/> )
+        )}
+      </div>
     </div>
     // <div id="projects-container" className="container">
     //    <div>

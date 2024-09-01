@@ -16,7 +16,7 @@ const CreateProject: React.FC = () => {
 
 
     const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE;
+        const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE_PROJECTS;
         e.preventDefault();
         setLoading(true);
         setError('');

@@ -1,11 +1,11 @@
-import  supabase  from '../utils/supabase';
-const projectTable = import.meta.env.VITE_SUPABASE_DB_TABLE_PROJECTS;
+import supabase from "../utils/supabase";
+
+const articleTable = import.meta.env.VITE_SUPABASE_DB_TABLE_ARTICLES;
 
 
-
-const Project: ProjectInterface = {
+const Articles : ArticleInterface = {
     all: async (publicOnly = false) => {
-        const query = supabase.from(projectTable).select('*');
+        const query = supabase.from(articleTable).select('*');
         if(publicOnly){
             query.is('public',true);
         }
@@ -18,16 +18,16 @@ const Project: ProjectInterface = {
         }
     },
     get: async (id) => {
-        const {data,error} = await supabase.from(projectTable).select('*').eq('id',id);
+        const {data,error} = await supabase.from(articleTable).select('*').eq('id',id);
         if(error){
             console.error(error);
             return null;
         }else{
             return data[0];
         }
-    },
-    create: async (project) => {
-        const { data, error } = await supabase.from(projectTable).insert(project).select()
+    }, 
+    create: async (article) => {
+        const { data, error } = await supabase.from(articleTable).insert(article).select()
             
         if(error){
             console.error(error);
@@ -36,9 +36,9 @@ const Project: ProjectInterface = {
 
         return data[0];
     },
-    update : async (id, project) => {
+    update : async (id, article) => {
         
-        const { error } = await supabase.from(projectTable).update(project).eq('id', id);
+        const { error } = await supabase.from(articleTable).update(article).eq('id', id);
         if(error){
             throw new Error(error.message);
         }
@@ -47,13 +47,15 @@ const Project: ProjectInterface = {
         return true;
     },
     delete : async (id) => {
-        const {error} = await supabase.from(projectTable).delete().eq("id",id);
+        const {error} = await supabase.from(articleTable).delete().eq("id",id);
         if(error){
             throw new Error(error.message);
             console.log(error);
         }
         return true;
     },
+    
+
 }
 
-export default Project;
+export default Articles;

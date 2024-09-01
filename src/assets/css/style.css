@@ -744,7 +744,21 @@ body section.building div a:hover span {
 #terminalToggler {
   display: none;
 }
-
+body #adminHome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+  div{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-around;
+      
+  }
+}
 #projectForm{
   width: 100%;
   padding: 0 20px;
@@ -935,6 +949,7 @@ body section.building div a:hover span {
   body #projects-container > div {
     z-index: -99999999999;
   }
+  
 }
 @keyframes blink-animation {
   to {

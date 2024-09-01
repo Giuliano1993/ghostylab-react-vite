@@ -13,6 +13,9 @@ import useToken from "../utils/useToken.tsx";
 import ProjectIndexPage from "../Pages/Admin/Projects/index.tsx";
 import CreateProject from "../Pages/Admin/Projects/create.tsx";
 import EditProject from "../Pages/Admin/Projects/edit.tsx";
+import AmdminIndex from "../Pages/Admin/index.tsx";
+import ArticleIndexPage from "../Pages/Admin/Articles/index.tsx";
+import CreateArticle from "../Pages/Admin/Articles/create.tsx";
 
 
 
@@ -64,9 +67,13 @@ const Navbar = ()=>{
         <Route path="*" element={<Error404 />} />
         
         {isLoggedIn ? (<>
+          <Route path='/admin' element={< AmdminIndex />} />
           <Route path='/admin/projects' element={<ProjectIndexPage />} />
           <Route path='/admin/projects/new' element={<CreateProject/>} />
           <Route path='/admin/projects/:id/edit' element={<EditProject/>} />
+
+          <Route path="/admin/articles" element={<ArticleIndexPage/>} />
+          <Route path="/admin/articles/new" element={<CreateArticle/>} />
           
         </>
         ):( 

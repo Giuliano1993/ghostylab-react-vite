@@ -759,6 +759,22 @@ body #adminHome{
       
   }
 }
+
+#articleForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  > * {
+    display: flex;
+    flex-direction: column;
+  }
+  textarea{
+    height: 200px;
+    width: 100%;
+  }
+}
+
 #projectForm{
   width: 100%;
   padding: 0 20px;

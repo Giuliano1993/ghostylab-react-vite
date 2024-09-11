@@ -16,6 +16,8 @@ import EditProject from "../Pages/Admin/Projects/edit.tsx";
 import AmdminIndex from "../Pages/Admin/index.tsx";
 import ArticleIndexPage from "../Pages/Admin/Articles/index.tsx";
 import CreateArticle from "../Pages/Admin/Articles/create.tsx";
+import EditArticle from "../Pages/Admin/Articles/edit.tsx";
+
 
 
 
@@ -74,7 +76,7 @@ const Navbar = ()=>{
 
           <Route path="/admin/articles" element={<ArticleIndexPage/>} />
           <Route path="/admin/articles/new" element={<CreateArticle/>} />
-          
+          <Route path="/admin/articles/:id/edit" element={<EditArticle/>} />  
         </>
         ):( 
         <Route path="/admin/*" element={<Navigate to="/" replace />} />) }

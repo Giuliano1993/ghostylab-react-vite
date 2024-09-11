@@ -30,7 +30,7 @@ const ArticleIndexPage = () => {
                 articles.map((a: Article)=>{ return (
                     <div key={a.id}>
                         <h2>
-                            <a href={`/admin/article/${a.id}`}>{a.title}</a>
+                            <a href={`/admin/articles/${a.id}/edit`}>{a.title}</a>
                         </h2>
                     </div>
                 )})

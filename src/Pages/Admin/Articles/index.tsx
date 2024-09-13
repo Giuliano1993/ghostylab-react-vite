@@ -19,22 +19,26 @@ const ArticleIndexPage = () => {
     },[])
 
     return (
-        <div>
-            <h1>Articles</h1>
-            <p>Articles Index Page</p>
-            <a className="btn" href="/admin/articles/new">New Article</a>
-            {loading ? ( 
-                <p>Loading...</p> 
-            ) : (
-                console.log(articles),
-                articles.map((a: Article)=>{ return (
-                    <div key={a.id}>
-                        <h2>
-                            <a href={`/admin/articles/${a.id}/edit`}>{a.title}</a>
-                        </h2>
-                    </div>
-                )})
-            )}
+        <div id="admin-article-list">
+            <div className="header">
+                <h1>Articles</h1>
+                <a className="btn" href="/admin/articles/new">New Article</a>
+            </div>
+            <div>
+                {loading ? ( 
+                    <p>Loading...</p> 
+                ) : (
+                    console.log(articles),
+                    articles.map((a: Article)=>{ return (
+                        <div key={a.id}>
+                            <h2>
+                                {a.title}
+                            </h2>
+                            <a href={`/admin/articles/${a.id}/edit`} className="btn">Edit</a>
+                        </div>
+                    )})
+                )}
+            </div>
         </div>
     )
 }

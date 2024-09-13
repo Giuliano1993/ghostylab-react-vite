@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Articles from '../../../Models/Articles';
-import {marked} from 'marked';
+import {Marked} from 'marked';
+
+import { Blocks } from 'react-loader-spinner';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js/lib/core';
+import php from 'highlight.js/lib/languages/php';
+import javascript from 'highlight.js/lib/languages/javascript';
+import python from 'highlight.js/lib/languages/python';
+import rust from 'highlight.js/lib/languages/rust';
+import 'highlight.js/styles/github.css';
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('rust', rust);
 
 
 const CreateArticle: React.FC = () => {
@@ -32,13 +45,27 @@ const CreateArticle: React.FC = () => {
             setError(error.message);
         }
         setLoading(false);
-        //navigate('/admin/articles');
+        navigate('/admin/articles');
 
     }
     
 
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         
+
+        const marked = new Marked(
+            markedHighlight({
+              langPrefix: 'hljs language-',
+              highlight(code, lang, info) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                
+                return hljs.highlight(code, { language }).value;
+              }
+            })
+          )
+         
+
+
         const htmlContent = await marked.parse(e.currentTarget.value);
         setHtmlContent(htmlContent);
         
@@ -50,27 +77,40 @@ const CreateArticle: React.FC = () => {
     return (
         <div>
             <h1>Create Article</h1>
-            <form onSubmit={formSubmit} id="articleForm" className="article-form">
-                <div className="form-group">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="content">Content</label>
-                    <textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} onKeyDown={handleKeyDown}/>
-                </div>
-                <div className="form-group checkbox-group">
-                    <div>
-                        <input type="checkbox" id="public" checked={isPublic} onChange={(e)=>setIsPublic(e.target.checked)} />
-                        <label htmlFor="public">Public</label>
+            { loading ? (
+                <Blocks
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                visible={true}
+                />
+            ) : (
+
+                <form onSubmit={formSubmit} id="articleForm" className="article-form">
+                    <div className="form-group">
+                        <label htmlFor="title">Title</label>
+                        <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                     </div>
-                    <div>
-                        <input type="checkbox" id="newsletter" checked={isNewsletter} onChange={(e)=>setIsNewsletter(e.target.checked)}/>
-                        <label htmlFor="newsletter">Newsletter</label>
+                    <div className="form-group">
+                        <label htmlFor="content">Content</label>
+                        <textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} onKeyDown={handleKeyDown}/>
                     </div>
-                </div>
-                <button type="submit" className='btn'>Create Article</button>
-            </form>
+                    <div className="form-group checkbox-group">
+                        <div>
+                            <input type="checkbox" id="public" checked={isPublic} onChange={(e)=>setIsPublic(e.target.checked)} />
+                            <label htmlFor="public">Public</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="newsletter" checked={isNewsletter} onChange={(e)=>setIsNewsletter(e.target.checked)}/>
+                            <label htmlFor="newsletter">Newsletter</label>
+                        </div>
+                    </div>
+                    <button type="submit" className='btn'>Create Article</button>
+                </form>
+            ) }
 
             <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>

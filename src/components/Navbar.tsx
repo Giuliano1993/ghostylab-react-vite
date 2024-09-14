@@ -6,6 +6,7 @@ import Projects from '../Pages/Projects.tsx'
 import Contact from '../Pages/Contact.tsx'
 import Error404 from '../Pages/Error404.tsx'
 import CommandLine from './CommandLine.tsx'
+import Articles from "../Pages/Articles.tsx";
 import ConfirmSubscription from "./ConfirmSubscription.tsx";
 import Login from "../Pages/Login.tsx";
 import Logout from "./Logout.tsx";
@@ -62,6 +63,7 @@ const Navbar = ()=>{
         <Route  path='/' element={<Home/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/projects' element={<Projects/>} />
+        <Route path='/articles' element={<Articles/>} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/confirm-subscription' element={<ConfirmSubscription/>} />
         <Route path='/login' element={<Login/>} />

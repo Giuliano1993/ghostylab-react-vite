@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Articles from "../../../Models/Articles";
+import Articles from "../../../Models/Article";
 
 const ArticleIndexPage = () => {
 

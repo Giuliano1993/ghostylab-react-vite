@@ -3,7 +3,7 @@ import supabase from "../utils/supabase";
 const articleTable = import.meta.env.VITE_SUPABASE_DB_TABLE_ARTICLES;
 
 
-const Articles : ArticleInterface = {
+const Article : ArticleInterface = {
     all: async (publicOnly = false) => {
         const query = supabase.from(articleTable).select('*');
         if(publicOnly){
@@ -58,4 +58,4 @@ const Articles : ArticleInterface = {
 
 }
 
-export default Articles;
+export default Article;

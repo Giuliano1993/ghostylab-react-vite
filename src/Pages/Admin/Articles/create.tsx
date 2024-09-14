@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Articles from '../../../Models/Articles';
 import {Marked} from 'marked';
 
 import { Blocks } from 'react-loader-spinner';

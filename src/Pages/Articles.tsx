@@ -26,7 +26,9 @@ const Articles = () => {
                 ) : (
                     articles.map((article) => (
                         <div key={article.id}>
-                            <h2>{article.title}</h2>
+                            <h2>
+                                <a href={`/articles/${article.id}`}>{article.title}</a>
+                            </h2>
                         </div>
                     ))
                 )}

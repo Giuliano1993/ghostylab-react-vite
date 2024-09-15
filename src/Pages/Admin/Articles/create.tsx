@@ -14,6 +14,7 @@ hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('php', php);
 hljs.registerLanguage('python', python);
 hljs.registerLanguage('rust', rust);
+import "../../../assets/css/dracula.css";
 
 
 const CreateArticle: React.FC = () => {
@@ -111,7 +112,7 @@ const CreateArticle: React.FC = () => {
                 </form>
             ) }
 
-            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+            <div className='preview article-content' dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>
     )
 }

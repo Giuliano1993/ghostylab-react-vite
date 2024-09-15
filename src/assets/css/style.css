@@ -151,6 +151,51 @@ body .container#home {
 body .container#error h2 {
   text-align: center;
 }
+
+body .article-content::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 210, 118); 
+  border-radius: 10px; 
+}
+
+body .article-content::-webkit-scrollbar {
+  width: 7px; 
+}
+
+body .article-content::-webkit-scrollbar-track {
+  background: rgb(30, 30, 30); 
+}
+
+body .article-content {
+  
+
+}
+body .article-content{
+  padding: 3rem;
+  height: calc(100vh - 251px);
+  /*width: 90%;*/
+  margin: 0 auto;
+  overflow-y: auto;
+  /*scrollbar-width: thin; 
+  scrollbar-color: rgb(20, 210, 118) rgb(30, 30, 30); */
+  pre{
+    code{
+      margin: 2.5em auto;
+    }
+  }
+  h1{
+    margin: 2rem auto;
+  }
+  h3{
+    margin: 1rem 0;
+  }
+   > *{
+    width: 90%;
+    margin: 0 auto;
+  }
+  a{
+    color:rgb(20, 210, 118)
+  }
+}
 body #latest-articles {
   display: flex;
   justify-content: space-around;

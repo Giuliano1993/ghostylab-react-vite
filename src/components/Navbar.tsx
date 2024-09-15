@@ -18,6 +18,7 @@ import AmdminIndex from "../Pages/Admin/index.tsx";
 import ArticleIndexPage from "../Pages/Admin/Articles/index.tsx";
 import CreateArticle from "../Pages/Admin/Articles/create.tsx";
 import EditArticle from "../Pages/Admin/Articles/edit.tsx";
+import SingleArticle from "../Pages/SingleArticle.tsx";
 
 
 
@@ -64,6 +65,7 @@ const Navbar = ()=>{
         <Route path='/about' element={<About/>} />
         <Route path='/projects' element={<Projects/>} />
         <Route path='/articles' element={<Articles/>} />
+        <Route path='/articles/:id' element={<SingleArticle/>} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/confirm-subscription' element={<ConfirmSubscription/>} />
         <Route path='/login' element={<Login/>} />

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Marked} from 'marked';
 
+
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+
 import { Blocks } from 'react-loader-spinner';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js/lib/core';
@@ -76,7 +80,7 @@ const CreateArticle: React.FC = () => {
 
     return (
         <div>
-            <h1>Create Article</h1>
+            <h1 className=" text-3xl" >Create Article</h1>
             { loading ? (
                 <Blocks
                 height="80"
@@ -92,11 +96,13 @@ const CreateArticle: React.FC = () => {
                 <form onSubmit={formSubmit} id="articleForm" className="article-form">
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+                        {/* <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/> */}
+                        <Input id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                     </div>
                     <div className="form-group">
+                        <Textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} onKeyDown={handleKeyDown}/>
                         <label htmlFor="content">Content</label>
-                        <textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} onKeyDown={handleKeyDown}/>
+                        {/* <textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} onKeyDown={handleKeyDown}/> */}
                     </div>
                     <div className="form-group checkbox-group">
                         <div>

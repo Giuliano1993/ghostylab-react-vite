@@ -25,8 +25,10 @@ const Projects = () => {
   return (
 
     <div id="projects-container" className="container">
-      <img src={labImg} alt="an hash art of laboratory tools"/>
-      <h1>My projects</h1>
+      <div>
+        <img src={labImg} alt="an hash art of laboratory tools"/>
+        <h1 className=" text-3xl">My projects</h1>
+      </div>
       <div className="toContent">
         {loading ? (
           <p>Loading...</p>

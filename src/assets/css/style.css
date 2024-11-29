@@ -1,3 +1,7 @@
+:root{
+  --terminal-green: rgb(20, 210, 118);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -683,6 +687,50 @@ body #projects-container .toContent a span {
 body #projects-container .toContent a:hover span {
   display: inline-block;
 }
+
+body #projects-container.container {
+  display: flex;
+  flex-direction: row;
+}
+
+body #projects-container.container>div:first-child {
+  display: flex;
+  align-items: center;
+  flex-basis: 60%;
+  
+  padding: 20px;
+}
+body #projects-container.container>div:first-child img{
+  width: 400px;
+}
+
+body #projects-container.container>div:last-child{
+  display: block;
+  flex-basis: 40%;
+  
+  height: calc(100vh - 297px);
+  overflow-y: auto;
+  
+  
+}
+body #projects-container.container>div:last-child>div{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+body #projects-container.container>div:last-child::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 210, 118); 
+  border-radius: 10px; 
+}
+
+body #projects-container.container>div:last-child::-webkit-scrollbar {
+  width: 7px; 
+}
+
+body #projects-container.container>div:last-child::-webkit-scrollbar-track {
+  background: rgb(30, 30, 30); 
+}
+
 body section.home-subscribe {
   display: flex;
   flex-direction: column;

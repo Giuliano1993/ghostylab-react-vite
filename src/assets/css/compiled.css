@@ -1,1254 +1,779 @@
-* {
-  padding: 0;
-  margin: 0;
+/*
+! tailwindcss v3.4.11 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
   box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
 }
 
-#root {
-  overflow-y: auto;
+::before,
+::after {
+  --tw-content: '';
 }
 
-#root::-webkit-scrollbar {
-  width: 5px;
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
-#root::-webkit-scrollbar-track {
-  background: rgb(30, 30, 30);
-  /* color of the tracking area */
-}
-
-#root::-webkit-scrollbar-thumb {
-  background-color: rgb(20, 210, 118);
-  /* color of the scroll thumb */
-  border-radius: 10px;
-  /* roundness of the scroll thumb */
-}
-
-.projectRow{
-  img{
-    filter: grayscale(100%);
-  }
-  &:hover img{
-    filter: grayscale(0%);
-  }
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px dashed white;
-  padding: 1em;
-  gap: 1em;
-  a{
-    align-self: stretch;
-  }
-  .cover{
-    width: 250px;
-    height: 150px;
-    img{
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover;
-      -o-object-position: center center;
-         object-position: center center;
-    }
-  }
-}
-
-#admin-projects{
-  padding: 1em;
-  .header{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between;
-    &>div{
-      display: flex;
-      flex-direction: column;
-    }
-    a{
-      align-self: center;
-    }
-    border-bottom: 1px solid white;
-    padding-bottom: 1em;
-    margin-bottom: 3em;
-  }
-}
-
-.btn{
-  background: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: "Inconsolata", monospace;
-  border: 1px solid white;
-  padding: 0.5em;
-  text-align: center;
-}
-
-.adminProjectRow{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 1em;
-  margin-top: 1em;
-  img{
-    width: 100px;
-    align-self: center;
-    margin-left: auto;
-  }
-  .actions{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    justify-content: space-around;
-    *{
-      background: transparent;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-family: "Inconsolata", monospace;
-      border: 1px solid white;
-      padding: 0.5em;
-      text-align: center;
-    }
-  }
-}
-
-.aboutText {
-  width: 60%;
-}
-
-.aboutText p > b {
-  color: rgb(20, 210, 118);
-}
-
-.aboutText h2 {
-  margin: 1rem 0;
-  color: rgb(20, 210, 118);
-}
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
 
 body {
-  background-color: rgb(30, 30, 30);
-  color: rgb(244, 244, 244);
-  font-family: "Inconsolata", monospace;
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
 }
 
-body #openCloseMenu {
-  display: none;
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
 }
 
-body #openCloseLabel {
-  display: none;
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
-body .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  height: calc(100vh - 251px);
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
-body .container h1 {
-  margin: 15px auto;
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-body .container#home {
-  flex-direction: column;
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
 }
 
-body .container#error h2 {
-  text-align: center;
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-feature-settings: normal;
+  /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
 }
 
-body .article-content::-webkit-scrollbar-thumb {
-  background-color: rgb(20, 210, 118);
-  border-radius: 10px;
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
 }
 
-body .article-content::-webkit-scrollbar {
-  width: 7px;
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
-body .article-content::-webkit-scrollbar-track {
-  background: rgb(30, 30, 30);
+sub {
+  bottom: -0.25em;
 }
 
-body .article-content {
-  padding: 3rem;
-  height: calc(100vh - 251px);
-  /*width: 90%;*/
-  margin: 0 auto;
-  overflow-y: auto;
-  /*scrollbar-width: thin; 
-  scrollbar-color: rgb(20, 210, 118) rgb(30, 30, 30); */
-  pre{
-    code{
-      margin: 2.5em auto;
-    }
-  }
-  h1{
-    margin: 2rem auto;
-  }
-  h3{
-    margin: 1rem 0;
-  }
-  > *{
-    width: 90%;
-    margin: 0 auto;
-  }
-  a{
-    color:rgb(20, 210, 118)
-  }
+sup {
+  top: -0.5em;
 }
 
-body #latest-articles {
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 40px;
-  flex-wrap: wrap;
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
 }
 
-body #latest-articles h2 {
-  flex-basis: 100%;
-  text-align: center;
-  margin: 20px auto;
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
 }
 
-body #latest-articles .article {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px 5px;
-  flex-basis: 30%;
-  border: 1px solid rgb(244, 244, 244);
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
 }
 
-body #latest-articles .article a:visited {
-  color: rgb(244, 244, 244);
-}
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
 
-body #subscribe > div {
-  margin-left: 20px;
-}
-
-body #subscribe > div > p {
-  margin-bottom: 20px;
-}
-
-body #subscribe form {
-  flex-grow: 1;
-}
-
-body #subscribe form > div {
-  margin: 15px auto;
-  display: flex;
-  flex-direction: column;
-  width: 800px;
-}
-
-body #subscribe form > div.flags {
-  margin: 25px auto;
-  flex-direction: row;
-}
-
-body #subscribe form > div.flags label {
-  margin-left: 15px;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-body #subscribe form > div textarea {
-  resize: vertical;
-  height: 136px;
-}
-
-body #subscribe form > div select {
-  margin-top: 0 !important;
-}
-
-body #subscribe form > div select option {
-  color: rgb(30, 30, 30);
-}
-
-body #subscribe form > div input, body #subscribe form > div textarea, body #subscribe form > div select {
-  flex-grow: 1;
-  margin-top: 0.5rem;
-  border: none;
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  /* 1 */
   background-color: transparent;
-  color: rgb(244, 244, 244);
-  font-family: "Inconsolata", monospace;
-  border-bottom: 1px solid rgb(244, 244, 244);
+  /* 2 */
+  background-image: none;
+  /* 2 */
 }
 
-body #subscribe form > div input.error, body #subscribe form > div textarea.error, body #subscribe form > div select.error {
-  border-bottom: 1px solid red;
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
 }
 
-body #subscribe form > div input:focus-visible, body #subscribe form > div textarea:focus-visible, body #subscribe form > div select:focus-visible {
-  outline: 0;
-  border-bottom: 1px solid rgb(20, 210, 118);
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
 }
 
-body #subscribe form > div input::-webkit-scrollbar, body #subscribe form > div textarea::-webkit-scrollbar, body #subscribe form > div select::-webkit-scrollbar {
-  background-color: rgb(244, 244, 244);
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
 }
 
-body #subscribe form > div input::-webkit-scrollbar-button, body #subscribe form > div textarea::-webkit-scrollbar-button, body #subscribe form > div select::-webkit-scrollbar-button {
-  background-color: rgb(244, 244, 244);
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
 }
 
-body #subscribe form > div input::-webkit-scrollbar-track, body #subscribe form > div textarea::-webkit-scrollbar-track, body #subscribe form > div select::-webkit-scrollbar-track {
-  background-color: rgb(30, 30, 30);
-  border: 1px solid rgb(20, 210, 118);
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
-body #subscribe form > div input::-webkit-scrollbar-track-piece, body #subscribe form > div textarea::-webkit-scrollbar-track-piece, body #subscribe form > div select::-webkit-scrollbar-track-piece {
-  background-color: rgb(30, 30, 30);
-  border: 1px solid rgb(20, 210, 118);
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
 }
 
-body #subscribe form > div input::-webkit-scrollbar-thumb, body #subscribe form > div textarea::-webkit-scrollbar-thumb, body #subscribe form > div select::-webkit-scrollbar-thumb {
-  background-color: rgb(20, 210, 118);
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
-body #subscribe form > div input::-webkit-scrollbar-corner, body #subscribe form > div textarea::-webkit-scrollbar-corner, body #subscribe form > div select::-webkit-scrollbar-corner {
-  background-color: rgb(30, 30, 30);
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
 }
 
-body #subscribe form > div input::-webkit-resizer, body #subscribe form > div textarea::-webkit-resizer, body #subscribe form > div select::-webkit-resizer {
-  background-color: rgb(30, 30, 30);
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
 }
 
-body #subscribe form > div input[type=radio], body #subscribe form > div textarea[type=radio], body #subscribe form > div select[type=radio] {
-  display: none;
-}
-
-body #subscribe form > div input[type=radio]:checked + label > img, body #subscribe form > div textarea[type=radio]:checked + label > img, body #subscribe form > div select[type=radio]:checked + label > img {
-  outline: 2px solid rgb(20, 210, 118);
-}
-
-body #subscribe form > div button {
-  background: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: "Inconsolata", monospace;
-  border: 1px solid white;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-body #subscribe form .success-message {
-  border: 1px solid rgb(20, 210, 118);
-  color: rgb(20, 210, 118);
-  text-align: center;
-  padding: 10px;
-}
-
-body #contacts {
-  flex-direction: column;
-  padding-top: 30px;
-}
-
-body #contacts #contact_line {
-  display: flex;
-  margin-top: 30px;
-  width: 100%;
-}
-
-body #contacts #contact_line > div:first-child {
-  flex-grow: 1;
-  flex-basis: 50%;
-  margin-right: 10px;
-}
-
-body #contacts #contact_line > div:last-child {
-  flex-grow: 1;
-  flex-basis: 50%;
-  margin-left: 10px;
-}
-
-body #contacts #contact_line > div:last-child > div {
-  display: flex;
-  flex-direction: column;
-}
-
-body #contacts #contact_line > div:last-child > div a {
-  padding: 5px 10px;
-  margin: 20px 0;
-  color: rgb(244, 244, 244);
-  text-decoration: none;
-  align-self: center;
-}
-
-body #contacts #contact_line > div:last-child > div a div {
-  display: block;
-}
-
-body #contacts #contact_line > div:last-child > div a div:nth-child(2) {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-body #contacts #contact_line > div:last-child > div a div:nth-child(2) p {
+fieldset {
+  margin: 0;
   padding: 0;
 }
 
-body #contacts #contact_line > div:last-child > div a div:nth-child(2) p:not(.side) {
-  flex-basis: 99%;
-  flex-grow: 2;
-  text-align: center;
+legend {
+  padding: 0;
 }
 
-body #contacts #contact_line > div:last-child > div a div:nth-child(2) p.side {
-  flex-shrink: 2;
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-body #contacts #contact_line > div:last-child > div a div:nth-child(2) p.side:last-child {
-  text-align: right;
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
 }
 
-body #contacts #contact_line > div:last-child > div a span {
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
   display: none;
 }
 
-body #contacts #contact_line > div:last-child > div a:hover span {
-  display: inline-block;
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 
-body #contacts #contact_line form {
-  flex-grow: 1;
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 
-body #contacts #contact_line form > div {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-body #contacts #contact_line form > div div {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-body #contacts #contact_line form > div div textarea {
-  resize: vertical;
-  height: 136px;
-}
-
-body #contacts #contact_line form > div div input, body #contacts #contact_line form > div div textarea {
-  flex-grow: 1;
-  margin-top: 0.5rem;
-  border: none;
-  background-color: transparent;
-  color: rgb(244, 244, 244);
-  font-family: "Inconsolata", monospace;
-  border-bottom: 1px solid rgb(244, 244, 244);
-}
-
-body #contacts #contact_line form > div div input.error, body #contacts #contact_line form > div div textarea.error {
-  border-bottom: 1px solid red;
-}
-
-body #contacts #contact_line form > div div input:focus-visible, body #contacts #contact_line form > div div textarea:focus-visible {
-  outline: 0;
-  border-bottom: 1px solid rgb(20, 210, 118);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar, body #contacts #contact_line form > div div textarea::-webkit-scrollbar {
-  background-color: rgb(244, 244, 244);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar-button, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-button {
-  background-color: rgb(244, 244, 244);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar-track, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-track {
-  background-color: rgb(30, 30, 30);
-  border: 1px solid rgb(20, 210, 118);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar-track-piece, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-track-piece {
-  background-color: rgb(30, 30, 30);
-  border: 1px solid rgb(20, 210, 118);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar-thumb, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-thumb {
-  background-color: rgb(20, 210, 118);
-}
-
-body #contacts #contact_line form > div div input::-webkit-scrollbar-corner, body #contacts #contact_line form > div div textarea::-webkit-scrollbar-corner {
-  background-color: rgb(30, 30, 30);
-}
-
-body #contacts #contact_line form > div div input::-webkit-resizer, body #contacts #contact_line form > div div textarea::-webkit-resizer {
-  background-color: rgb(30, 30, 30);
-}
-
-body #contacts #contact_line form > div div button {
-  background: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: "Inconsolata", monospace;
-  border: 1px solid white;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-body .message {
-  border: 1px solid;
-  text-align: center;
-  padding: 10px;
-}
-
-body .message.success {
-  border-color: rgb(20, 210, 118);
-  color: rgb(20, 210, 118);
-}
-
-body .message.error {
-  border-color: red;
-  color: red;
-}
-
-body #terminalEditor {
-  max-height: 200px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+.container {
   width: 100%;
 }
 
-body #terminalEditor::-webkit-scrollbar {
-  display: none;
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
 }
 
-body .pointer {
-  display: inline-block;
-  background-color: rgb(244, 244, 244);
-  width: 7px;
-  height: 15px;
-  animation: blink-animation 1s steps(2, start) infinite;
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
 }
 
-body .about-page {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 2rem;
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
 }
 
-body .about-page > div > h2 {
-  margin-bottom: 1rem;
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
 }
 
-body #skills {
-  flex-basis: 35%;
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
 }
 
-body #skills h2 {
-  text-align: right;
+.visible {
+  visibility: visible;
 }
 
-body #skills .skill-box {
-  display: flex;
-  align-items: center;
-}
-
-body #skills .skill-box:hover .skill-left-fill::after {
-  left: 0;
-  background-color: rgb(30, 30, 30);
-  animation: left-to-right 1s;
-}
-
-body #skills .skill-box:hover .skill-right-fill::after {
-  right: 0;
-  background-color: rgb(30, 30, 30);
-  animation: right-to-left 1s;
-}
-
-body #skills .skill-box div.skill-left-fill, body #skills .skill-box div.skill-right-fill {
-  background-color: rgb(244, 244, 244);
-  flex-basis: 40%;
-  height: 1rem;
+.relative {
   position: relative;
 }
 
-body #skills .skill-box div.skill-left-fill::after, body #skills .skill-box div.skill-right-fill::after {
-  content: "";
+.flex {
+  display: flex;
+}
+
+.contents {
+  display: contents;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-4 {
   height: 1rem;
-  position: absolute;
-  width: 5px;
+}
+
+.min-h-\[80px\] {
+  min-height: 80px;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.rounded-md {
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.rounded-sm {
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-input {
+  border-color: hsl(var(--input));
+}
+
+.border-primary {
+  border-color: hsl(var(--primary));
+}
+
+.bg-background {
+  background-color: hsl(var(--background));
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-current {
+  color: currentColor;
+}
+
+.ring-offset-background {
+  --tw-ring-offset-color: hsl(var(--background));
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+  }
+}
+
+.file\:border-0::file-selector-button {
+  border-width: 0px;
+}
+
+.file\:bg-transparent::file-selector-button {
   background-color: transparent;
 }
 
-body #skills .skill-box div:first-child, body #skills .skill-box div:last-child {
-  font-size: 2rem;
-  padding-bottom: 8px;
+.file\:text-sm::file-selector-button {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
-body #skills .skill-box div.skill-text {
-  padding-left: 10px;
-  padding-right: 10px;
-  color: rgb(20, 210, 118);
+.file\:font-medium::file-selector-button {
+  font-weight: 500;
 }
 
-body #welcome-container,
-body #projects-container {
-  justify-content: center;
+.file\:text-foreground::file-selector-button {
+  color: hsl(var(--foreground));
 }
 
-body #welcome-container > div,
-body #projects-container > div {
-  text-align: center;
+.placeholder\:text-muted-foreground::-moz-placeholder {
+  color: hsl(var(--muted-foreground));
 }
 
-body #welcome-container {
-  height: 100vh;
+.placeholder\:text-muted-foreground::placeholder {
+  color: hsl(var(--muted-foreground));
 }
 
-body #projects-container > div {
-  display: flex;
-  flex-direction: column;
-  /*span{
-    font-size: 2rem;
-    &.pointer{
-      height:2rem;
-      background-color:$terminal-green
-    }
-  }*/
+.focus-visible\:outline-none:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
-body #projects-container > div > p {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.focus-visible\:ring-2:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-body .intro-titles h3 {
-  color: rgb(153, 153, 153);
+.focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: hsl(var(--ring));
 }
 
-body #command-line {
-  width: 100%;
-  height: 100px;
-  border-top: rgb(244, 244, 244) 1px solid;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.focus-visible\:ring-offset-2:focus-visible {
+  --tw-ring-offset-width: 2px;
 }
 
-body #command-line textarea {
-  border: none;
-  background-color: rgb(30, 30, 30);
-  color: rgb(244, 244, 244);
-  outline: none;
-  font-family: "Inconsolata", monospace;
-  font-size: 1em;
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
 }
 
-body #command-line textarea:focus, body #command-line textarea:active {
-  border: none;
-  outline: none;
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
 }
 
-body nav {
-  width: 100%;
-  display: flex;
-  border-bottom: rgb(244, 244, 244) solid 1px;
-  justify-content: flex-end;
-  background-color: rgb(30, 30, 30);
-  z-index: 999999;
-  position: sticky;
-  top: 0;
+.data-\[state\=checked\]\:bg-primary[data-state="checked"] {
+  background-color: hsl(var(--primary));
 }
 
-body nav a {
-  text-decoration: none;
-  padding: 1em 1.5em;
-  color: rgb(244, 244, 244);
+.data-\[state\=checked\]\:text-primary-foreground[data-state="checked"] {
+  color: hsl(var(--primary-foreground));
 }
-
-body nav a::after {
-  content: "";
-  display: inline-block;
-}
-
-body nav a.active {
-  color: rgb(20, 210, 118) !important;
-}
-
-body nav a.active::after {
-  content: "";
-  float: right;
-  display: inline-block;
-  background-color: rgb(244, 244, 244);
-  width: 7px;
-  height: 15px;
-  animation: blink-animation 1s steps(2, start) infinite;
-}
-
-body nav a:visited {
-  color: rgb(244, 244, 244);
-}
-
-body nav a:hover::after {
-  content: "";
-  float: right;
-  display: inline-block;
-  background-color: rgb(244, 244, 244);
-  width: 7px;
-  height: 15px;
-  animation: blink-animation 1s steps(2, start) infinite;
-}
-
-body section.home-intro {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-body section.home-intro > div {
-  width: 50%;
-}
-
-body section.home-intro * {
-  text-align: center;
-}
-
-body section.home-intro img {
-  flex-basis: 25%;
-  filter: grayscale(100%);
-  border-radius: 30px;
-  margin: 10px;
-}
-
-body section.home-intro > div {
-  flex-grow: 2;
-}
-
-#projects-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-body #projects-container > img {
-  width: 200px;
-  align-self: center;
-  z-index: -9999999;
-}
-
-body #projects-container .toContent {
-  display: flex;
-  justify-content: center;
-}
-
-body #projects-container .toContent a {
-  padding: 5px 0;
-  margin: 20px 0;
-  color: rgb(244, 244, 244);
-  text-decoration: none;
-}
-
-body #projects-container .toContent a div {
-  display: block;
-}
-
-body #projects-container .toContent a div:nth-child(2) {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-body #projects-container .toContent a div:nth-child(2) p {
-  padding: 0;
-}
-
-body #projects-container .toContent a div:nth-child(2) p:not(.side) {
-  flex-basis: 99%;
-  flex-grow: 2;
-  text-align: center;
-}
-
-body #projects-container .toContent a div:nth-child(2) p.side {
-  flex-shrink: 2;
-}
-
-body #projects-container .toContent a div:nth-child(2) p.side:last-child {
-  text-align: right;
-}
-
-body #projects-container .toContent a span {
-  display: none;
-}
-
-body #projects-container .toContent a:hover span {
-  display: inline-block;
-}
-
-body section.home-subscribe {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-body section.home-subscribe a {
-  padding: 5px 10px;
-  margin: 20px 0;
-  color: rgb(244, 244, 244);
-  text-decoration: none;
-  /*width: 267px;
-  display: block;*/
-}
-
-body section.home-subscribe a div {
-  display: block;
-}
-
-body section.home-subscribe a div:nth-child(2) {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-body section.home-subscribe a div:nth-child(2) p {
-  padding: 0;
-}
-
-body section.home-subscribe a div:nth-child(2) p:not(.side) {
-  flex-basis: 99%;
-  flex-grow: 2;
-  text-align: center;
-}
-
-body section.home-subscribe a div:nth-child(2) p.side {
-  flex-shrink: 2;
-}
-
-body section.home-subscribe a div:nth-child(2) p.side:last-child {
-  text-align: right;
-}
-
-body section.home-subscribe a span {
-  display: none;
-}
-
-body section.home-subscribe a:hover span {
-  display: inline-block;
-}
-
-body section.building {
-  display: flex;
-  align-items: center;
-}
-
-body section.building p {
-  padding: 30px;
-  flex-basis: 50%;
-  flex-grow: 1;
-}
-
-body section.building div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-grow: 1;
-  flex-basis: 50%;
-}
-
-body section.building div a {
-  padding: 5px 10px;
-  margin: 20px 0;
-  color: rgb(244, 244, 244);
-  text-decoration: none;
-}
-
-body section.building div a div {
-  display: block;
-}
-
-body section.building div a div:nth-child(2) {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-body section.building div a div:nth-child(2) p {
-  padding: 0;
-}
-
-body section.building div a div:nth-child(2) p:not(.side) {
-  flex-basis: 99%;
-  flex-grow: 2;
-  text-align: center;
-}
-
-body section.building div a div:nth-child(2) p.side {
-  flex-shrink: 2;
-}
-
-body section.building div a div:nth-child(2) p.side:last-child {
-  text-align: right;
-}
-
-body section.building div a span {
-  display: none;
-}
-
-body section.building div a:hover span {
-  display: inline-block;
-}
-
-.d-lg-none {
-  display: none;
-}
-
-.scale-out-horizontal {
-  animation: scale-out-horizontal 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-}
-
-#terminalToggler {
-  display: none;
-}
-
-body #adminHome{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  padding: 1em;
-  div{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    justify-content: space-around;
-  }
-}
-
-#articleForm{
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  > * {
-    display: flex;
-    flex-direction: column;
-  }
-  textarea{
-    height: 200px;
-    width: 100%;
-  }
-}
-
-#admin-article-list{
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  .header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  & > div{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    & > div{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      a{
-        text-decoration: none;
-        color: rgb(244, 244, 244);
-      }
-    }
-  }
-}
-
-#projectForm{
-  width: 100%;
-  padding: 0 20px;
-  > div {
-    & > label {
-      display: block;
-      margin-top: 10px;
-    }
-    & > input {
-      width: 30%;
-      padding: 10px;
-      margin-top: 5px;
-    }
-    & > textarea {
-      padding: 10px;
-      margin-top: 5px;
-      width: 100%;
-    }
-    &:last-child{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: end;
-      button  {
-        background: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin-left: auto;
-        padding: 0.5em 3em;
-        font-family: "Inconsolata", monospace;
-        border: 1px solid white;
-        margin-top: 1em;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1330px) {
-  .d-lg-none {
-    display: inline;
-  }
-
-  #home .building {
-    flex-direction: column;
-  }
-
-  #home .building .navbar-item {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  #home .building > p {
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  #terminalEditor {
-    display: none;
-  }
-
-  #terminalToggler {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    color: rgb(20, 210, 118);
-    padding: 5px 10px;
-    border: 1px solid rgb(20, 210, 118);
-    background-color: rgb(30, 30, 30);
-    cursor: pointer;
-  }
-
-  .force-show #terminalToggler {
-    bottom: 200px;
-  }
-
-  .force-show #terminalEditor {
-    display: block;
-  }
-
-  #root {
-    overflow-y: visible;
-  }
-}
-
-@media screen and (max-width: 920px) {
-  body .container.about-page {
-    flex-direction: column;
-    height: 100%;
-  }
-
-  body .container.about-page .aboutText {
-    width: 100%;
-  }
-
-  body .container.about-page #skills h2 {
-    text-align: left;
-  }
-
-  body #projects-container img {
-    width: 200px;
-    margin-bottom: 20px;
-  }
-
-  body #projects-container .toContent {
-    flex-direction: column;
-    align-items: center;
-    vertical-align: middle;
-  }
-
-  body #projects-container .toContent a {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-}
-
-@media screen and (max-width: 612px) {
-  body #home .building .homeActions {
-    display: flex;
-    flex-direction: column;
-  }
-
-  body #home .building .homeActions .navbar-item {
-    margin: unset;
-  }
-
-  body #contacts #contact_line {
-    flex-direction: column;
-    /*&>div:last-child>div{
-      flex-direction: row;
-      flex-wrap: wrap;
-      a{
-        flex-basis: 50%;
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }*/
-  }
-
-  body #contacts #contact_line > div {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
-.navbar-item{
-  color: white;
-  &:visited{
-    color: white;
-  }
-}
-
-@media screen and (max-width: 556px) {
-  nav.navbar .navbar-item {
-    padding: 1em;
-  }
-}
-
-/* phone */
-
-@media screen and (max-width: 500px) {
-  body #openCloseLabel {
-    display: block;
-    line-height: 30%;
-  }
-
-  body .navbar.is-primary {
-    justify-content: center;
-  }
-
-  body .navbar.is-primary button {
-    background-color: rgb(30, 30, 30);
-    color: rgb(244, 244, 244);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 40px;
-    border: 1px solid rgb(244, 244, 244);
-    border-radius: 10px;
-  }
-
-  body .navbar.is-primary a {
-    display: none;
-  }
-
-  body #openCloseMenu:checked + .navbar.is-primary {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgb(30, 30, 30);
-  }
-
-  body #openCloseMenu:checked + .navbar.is-primary a {
-    display: block;
-    border-top: 1px solid rgb(244, 244, 244);
-    width: 100%;
-    text-align: center;
-  }
-
-  body #openCloseMenu:checked + .navbar.is-primary a::after {
-    float: none;
-  }
-
-  body #home .home-intro {
-    flex-direction: column;
-  }
-
-  body #home .home-intro div {
-    width: 100%;
-  }
-
-  body #projects-container > div {
-    z-index: -99999999999;
-  }
-}
-
-@keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-
-/* ----------------------------------------------
- * Generated by Animista on 2023-2-3 23:8:0
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation scale-out-horizontal
- * ----------------------------------------
- */
-
-@keyframes scale-out-horizontal {
-  0% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scaleX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes left-to-right {
-  0% {
-    left: 0;
-  }
-
-  100% {
-    left: 100%;
-  }
-}
-
-@keyframes right-to-left {
-  0% {
-    right: 0;
-  }
-
-  100% {
-    right: 100%;
-  }
-}
-
